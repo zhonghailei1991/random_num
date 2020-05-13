@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content{
+            width: 80%;
+            margin:0 auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+        h1:not(:last-child){
+            flex:1;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content"></div>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        function my_ran2(n, min, max) {
+            var arr = [];
+            for (i = 0; i < n; i++) {
+                arr[i] = parseInt(Math.random() * (max - min + 1) + min);
+                for (j = 0; j < i; j++) {
+                    if (arr[i] == arr[j]) {
+                        i = i - 1;
+                        break;
+                    }
+                }
+            }
+            for (i=0; i < arr.length; i++) {
+               let str =  "<h1 style=color:rgb"+ rgb() +">" + arr[i] + "</h1>"
+                $("#content").append(str)
+            }
+            return arr;
+        }
+        function rgb(){//rgb颜色随机
+			var r = Math.floor(Math.random()*256);
+			var g = Math.floor(Math.random()*256);
+			var b = Math.floor(Math.random()*256);
+			var rgb = '('+r+','+g+','+b+')';
+			return rgb;
+		}
+        my_ran2(10,1,100)
+    </script>
+</body>
+
+</html>
